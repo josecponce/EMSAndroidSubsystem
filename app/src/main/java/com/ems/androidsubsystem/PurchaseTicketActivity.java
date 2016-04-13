@@ -1,5 +1,6 @@
 package com.ems.androidsubsystem;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,9 +15,10 @@ import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.beardedhen.androidbootstrap.api.defaults.ButtonMode;
 import com.ems.DataSubsystem.Event;
 
-public class PurchaseTicketActivity extends AppCompatActivity implements TextWatcher, View.OnClickListener, AndroidAPIProxy.onTicketPurchased {
+public class PurchaseTicketActivity extends AppCompatActivity implements View.OnClickListener, AndroidAPIProxy.onTicketPurchased {
 
     public static final String LOG = "PurchaseTicketActivity";
+    public static final String EXTRA_TICKET_COUNT = "ticketCount";
 
     private AwesomeTextView mEventNameTextView;
     private AwesomeTextView mEventLocationTextView;
@@ -39,9 +41,9 @@ public class PurchaseTicketActivity extends AppCompatActivity implements TextWat
     }
     
     public void purchaseTicket() {
-        // TODO get the proxy to do this
+
         int count;
-        try{
+        try{//ensure the ticket count field actually contains a number
             count = Integer.parseInt(mTicketCountEditText.getText().toString());
         }catch (NumberFormatException e){//if there is not a number in the count field
             final String text = "Please enter a valid integer in the count field";
@@ -49,8 +51,11 @@ public class PurchaseTicketActivity extends AppCompatActivity implements TextWat
             message.show();
             return;
         }
-
-        mProxy.purchaseTicket(this,mEvent,count);
+        //redirect to makePaymentActivity
+        Intent i = new Intent(this,MakePaymentActivity.class);
+        i.putExtra(EXTRA_TICKET_COUNT, count);//pass the necessary info to the makePaymentActivity
+        i.putExtra(EventsActivity.EXTRA_EVENT,mEvent);
+        startActivity(i);
     }
 
     private void wireUIElements() {
@@ -71,37 +76,37 @@ public class PurchaseTicketActivity extends AppCompatActivity implements TextWat
         final String time = mEvent.getTime();
         final String defaults = "Some made up time";
         mEventTimeTextView.setText((time==null)? defaults:time);
-        mTicketCountEditText.addTextChangedListener(this);
+        mTicketCountEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                int ticketCount;
+                try{
+                    ticketCount = Integer.parseInt(s.toString());
+                    final double totalPrice = mEvent.getTicketPrice() * ticketCount;
+                    mTicketTotalAmountTextView.setText(String.valueOf(totalPrice));
+                }catch (NumberFormatException e){
+                    final String text = "Please enter a number in the count field.";
+                    Toast message = Toast.makeText(PurchaseTicketActivity.this, text, Toast.LENGTH_LONG);
+                    message.show();
+                    mTicketTotalAmountTextView.setText("????");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         mTicketCountEditText.setText("1");
         mTicketTotalAmountTextView.setText(String.valueOf(mEvent.getTicketPrice()));
         mPurchaseTicketButton.setOnClickListener(this);
         mPurchaseTicketButton.setButtonMode(ButtonMode.REGULAR);
 
-    }
-
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-        //not needed
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-        int ticketCount;
-        try{
-            ticketCount = Integer.parseInt(s.toString());
-            final double totalPrice = mEvent.getTicketPrice() * ticketCount;
-            mTicketTotalAmountTextView.setText(String.valueOf(totalPrice));
-        }catch (NumberFormatException e){
-            final String text = "Please enter a number in the count field.";
-            Toast message = Toast.makeText(this, text, Toast.LENGTH_LONG);
-            message.show();
-            mTicketTotalAmountTextView.setText("????");
-        }
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-        //not needed
     }
 
     @Override

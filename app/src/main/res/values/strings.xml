@@ -11,4 +11,9 @@
     <string name="purchase_ticket_rate">Ticket Rate:</string>
     <string name="purchase_ticket_count">Count:</string>
     <string name="purchase_ticket_amount">Amount:</string>
+    <string name="make_payment_cardNumber">Card Number</string>
+    <string name="make_payment_securityCode">Security Code</string>
+    <string name="make_payment_expirationMonth">Expiration Month</string>
+    <string name="make_payment_expirationYear">Expiration Year</string>
+    <string name="make_payment_button">Pay Now</string>
 </resources>

@@ -56,11 +56,12 @@ public class Event implements Serializable{
 
     public Event(){}
 
-    public Event(String eventName, String date, String location, String category){
+    public Event(String eventName, String date, String location, String category, double ticketPrice){
         name = eventName;
         startDate = date;
         this.location= location;
         this.category = category;
+		this.ticketPrice = ticketPrice;
     }
 
 	/**
