@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">AndroidSubsystem</string>
+    <string name="from_date_label">From date</string>
+    <string name="to_date_label">To date</string>
+    <string name="category_label">Category</string>
+    <string name="filter_button">Filter</string>
+    <string name="purchase_ticket_location">Location:</string>
+    <string name="purchase_ticket_time">Time:</string>
+    <string name="purchase_ticket_date">Date:</string>
+    <string name="purchase_ticket_button">Purchase Ticket</string>
+    <string name="purchase_ticket_rate">Ticket Rate:</string>
+    <string name="purchase_ticket_count">Count:</string>
+    <string name="purchase_ticket_amount">Amount:</string>
+</resources>

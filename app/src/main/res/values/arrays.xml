@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="dropdown">
+        <item>Trade Show</item>
+        <item>Conference</item>
+        <item>Other Category</item>
+    </string-array>
+</resources>
