@@ -14,6 +14,11 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.BootstrapEditText;
 import com.beardedhen.androidbootstrap.api.defaults.ButtonMode;
 import com.ems.DataSubsystem.Event;
+import com.ems.DataSubsystem.Payment;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PurchaseTicketActivity extends AppCompatActivity implements View.OnClickListener, AndroidAPIProxy.onTicketPurchased {
 
@@ -21,12 +26,16 @@ public class PurchaseTicketActivity extends AppCompatActivity implements View.On
     public static final String EXTRA_TICKET_COUNT = "ticketCount";
 
     private AwesomeTextView mEventNameTextView;
-    private AwesomeTextView mEventLocationTextView;
-    private AwesomeTextView mEventDateTextView;
-    private AwesomeTextView mEventTimeTextView;
     private BootstrapEditText mTicketCountEditText;
+    private AwesomeTextView mTicketRate;
     private AwesomeTextView mTicketTotalAmountTextView;
     private BootstrapButton mPurchaseTicketButton;
+
+    private BootstrapEditText mCardNumberEditText;
+    private BootstrapEditText mSecurityCodeEditText;
+    private BootstrapEditText mExpirationMonthEditText;
+    private BootstrapEditText mExpirationYearEditText;
+    private BootstrapEditText mEmail;
 
     private Event mEvent;
     private AndroidAPIProxy mProxy = new AndroidAPIProxy();
@@ -51,31 +60,82 @@ public class PurchaseTicketActivity extends AppCompatActivity implements View.On
             message.show();
             return;
         }
-        //redirect to makePaymentActivity
-        Intent i = new Intent(this,MakePaymentActivity.class);
-        i.putExtra(EXTRA_TICKET_COUNT, count);//pass the necessary info to the makePaymentActivity
-        i.putExtra(EventsActivity.EXTRA_EVENT,mEvent);
-        startActivity(i);
+        Payment payment = new Payment();
+        payment.setAmount(Double.parseDouble(mTicketTotalAmountTextView.getText().toString()));
+        payment.setCreditCardExpirationDate(mExpirationYearEditText.getText()+"-"+mExpirationMonthEditText.getText()+"-00");
+        payment.setCreditCardNumber(mCardNumberEditText.getText().toString());
+        payment.setDate(new Date());
+        payment.setEmail(mEmail.getText().toString());
+
+        Log.d(LOG, "Before input validated");
+        if(validateInput()) {
+            Log.d(LOG, "Input validated");
+            //go to the proxy to pay(invoke remote api)
+            mProxy.purchaseTicket(PurchaseTicketActivity.this,mEvent, count, payment);
+            //proxy will trigger a callback when the ticket purchase has been processed
+        }
+    }
+
+    private boolean validateInput(){
+        String cardNumber;
+        String securityCode;
+        int expirationMonth;
+        int expirationYear;
+        cardNumber = mCardNumberEditText.getText().toString();
+        if (cardNumber.length()!=16) {
+            showError("Credit card number should be 16 digits long.");
+            return false;
+        }
+
+        securityCode = mSecurityCodeEditText.getText().toString();
+        if (securityCode.length()<3||securityCode.length()>4){
+            showError("The security code should be either 3 or 4 digits long.");
+            return false;
+        }
+
+
+        final String month = mExpirationMonthEditText.getText().toString();
+        expirationMonth = Integer.parseInt(month);
+        if (expirationMonth<1||expirationMonth>12){
+            showError("Month has to be between 1-12");
+            return false;
+        }
+
+        final String year =mExpirationYearEditText.getText().toString();
+        final Calendar now = Calendar.getInstance();
+        expirationYear = Integer.parseInt(year);
+        if (expirationYear< now.get(Calendar.YEAR)||
+                (expirationYear== now.get(Calendar.YEAR))&&
+                        expirationMonth<now.get(Calendar.MONTH)){
+            showError("The card seems to be expired. Please check the expiration date and try again");
+            return false;
+        }
+        return true;
+    }
+
+    private void showError(String message){
+        Toast toast = Toast.makeText(PurchaseTicketActivity.this,message,Toast.LENGTH_LONG);
+        toast.show();
     }
 
     private void wireUIElements() {
 
         //get handle of UI elements
         mEventNameTextView = (AwesomeTextView) findViewById(R.id.purchase_ticket_eventName);
-        mEventLocationTextView = (AwesomeTextView) findViewById(R.id.purchase_ticket_eventLocation);
-        mEventDateTextView = (AwesomeTextView) findViewById(R.id.purchase_ticket_eventDate);
-        mEventTimeTextView = (AwesomeTextView) findViewById(R.id.purchase_ticket_eventTime);
         mTicketCountEditText = (BootstrapEditText) findViewById(R.id.purchase_ticket_ticketCount);
         mTicketTotalAmountTextView = (AwesomeTextView) findViewById(R.id.purchase_ticket_ticketAmountTotal);
         mPurchaseTicketButton = (BootstrapButton) findViewById(R.id.purchase_ticket_purchaseTicket_button);
+        mTicketRate = (AwesomeTextView) findViewById(R.id.purchase_ticket_ticketRate);
+        mCardNumberEditText = (BootstrapEditText) findViewById(R.id.make_payment_cardNumber);
+        mSecurityCodeEditText = (BootstrapEditText) findViewById(R.id.make_payment_securityCode);
+        mExpirationMonthEditText = (BootstrapEditText) findViewById(R.id.make_payment_expirationMonth);
+        mExpirationYearEditText = (BootstrapEditText) findViewById(R.id.make_payment_expirationYear);
+        //eliminate repeated ids from make payment layout
+
+        mEmail = (BootstrapEditText) findViewById(R.id.purchase_ticket_email);
 
         //wire UI elements
         mEventNameTextView.setText(mEvent.getName());
-        mEventLocationTextView.setText(mEvent.getLocation());
-        mEventDateTextView.setText(mEvent.getStartDate());
-        final String time = mEvent.getTime();
-        final String defaults = "Some made up time";
-        mEventTimeTextView.setText((time==null)? defaults:time);
         mTicketCountEditText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -87,6 +147,7 @@ public class PurchaseTicketActivity extends AppCompatActivity implements View.On
                 int ticketCount;
                 try{
                     ticketCount = Integer.parseInt(s.toString());
+                    Log.d(LOG, ticketCount + " tickets at " + mEvent.getTicketPrice());
                     final double totalPrice = mEvent.getTicketPrice() * ticketCount;
                     mTicketTotalAmountTextView.setText(String.valueOf(totalPrice));
                 }catch (NumberFormatException e){
@@ -102,11 +163,16 @@ public class PurchaseTicketActivity extends AppCompatActivity implements View.On
 
             }
         });
+        mTicketRate.setText(String.valueOf(mEvent.getTicketPrice()));
         mTicketCountEditText.setText("1");
         mTicketTotalAmountTextView.setText(String.valueOf(mEvent.getTicketPrice()));
         mPurchaseTicketButton.setOnClickListener(this);
         mPurchaseTicketButton.setButtonMode(ButtonMode.REGULAR);
 
+        mCardNumberEditText.setText("");
+        mSecurityCodeEditText.setText("");
+        mExpirationMonthEditText.setText("");
+        mExpirationYearEditText.setText("");
     }
 
     @Override

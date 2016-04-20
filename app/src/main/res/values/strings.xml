@@ -16,4 +16,15 @@
     <string name="make_payment_expirationMonth">Expiration Month</string>
     <string name="make_payment_expirationYear">Expiration Year</string>
     <string name="make_payment_button">Pay Now</string>
+    <string name="landing_gotoevents">Events List</string>
+    <string name="landing_event_location">Location</string>
+    <string name="landing_event_date">Date</string>
+    <string name="landing_event_time">Time</string>
+    <string name="landing_event_startDate">Start Date</string>
+    <string name="landing_event_endDate">Ending Date</string>
+    <string name="purchase_ticket_startDate">Start Date</string>
+    <string name="eventDetails_startDate">Start Date</string>
+    <string name="eventDetails_endDate">Ending Date</string>
+    <string name="purchase_email">Email</string>
+    <string name="purchase_ticket_email">Email</string>
 </resources>

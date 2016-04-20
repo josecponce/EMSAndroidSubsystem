@@ -44,14 +44,14 @@ public class MakePaymentActivity extends AppCompatActivity implements AndroidAPI
     }
 
     private void wireUI(){
-        mEventNameTextView = (AwesomeTextView) findViewById(R.id.make_payment_eventName);
-        mTicketCountTextView = (AwesomeTextView) findViewById(R.id.make_payment_ticketCount);
-        mTicketAmountTotalTextView = (AwesomeTextView) findViewById(R.id.make_payment_ticketTotal);
-        mCardNumberEditText = (BootstrapEditText) findViewById(R.id.make_payment_cardNumber);
-        mSecurityCodeEditText = (BootstrapEditText) findViewById(R.id.make_payment_securityCode);
-        mExpirationMonthEditText = (BootstrapEditText) findViewById(R.id.make_payment_expirationMonth);
-        mExpirationYearEditText = (BootstrapEditText) findViewById(R.id.make_payment_expirationYear);
-        mPayNowButton = (BootstrapButton) findViewById(R.id.make_payment_makePayment_button);
+    //    mEventNameTextView = (AwesomeTextView) findViewById(R.id.make_payment_eventName);
+    //    mTicketCountTextView = (AwesomeTextView) findViewById(R.id.make_payment_ticketCount);
+    //    mTicketAmountTotalTextView = (AwesomeTextView) findViewById(R.id.make_payment_ticketTotal);
+     //   mCardNumberEditText = (BootstrapEditText) findViewById(R.id.make_payment_cardNumber);
+    //    mSecurityCodeEditText = (BootstrapEditText) findViewById(R.id.make_payment_securityCode);
+     //   mExpirationMonthEditText = (BootstrapEditText) findViewById(R.id.make_payment_expirationMonth);
+    //    mExpirationYearEditText = (BootstrapEditText) findViewById(R.id.make_payment_expirationYear);
+     //   mPayNowButton = (BootstrapButton) findViewById(R.id.make_payment_makePayment_button);
 
         mEventNameTextView.setText(mEvent.getName());
         mTicketCountTextView.setText(String.valueOf(mTicketCount));
@@ -75,7 +75,7 @@ public class MakePaymentActivity extends AppCompatActivity implements AndroidAPI
                 if(validateInput()) {
                     Log.d(LOG, "Input validated");
                     //go to the proxy to pay(invoke remote api)
-                    proxy.purchaseTicket(MakePaymentActivity.this,mEvent, mTicketCount);
+                   // proxy.purchaseTicket(MakePaymentActivity.this,mEvent, mTicketCount);
                     //proxy will trigger a callback when the ticket purchase has been processed
                 }
             }

@@ -11,163 +11,164 @@
     android:orientation="vertical"
     android:gravity="center_horizontal"
     tools:context="com.ems.androidsubsystem.MakePaymentActivity">
-
-    <com.beardedhen.androidbootstrap.AwesomeTextView
-        android:id="@+id/make_payment_eventName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:bootstrapBrand="regular"
-        android:textSize="@dimen/bootstrap_h3_text_size"
-        app:bootstrapText="Name of the event" />
-
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+    <!--
         <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/make_payment_ticketCount_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/purchase_ticket_count"/>
-
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/make_payment_ticketCount"
+            android:id="@+id/make_payment_eventName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
             android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="1"/>
-    </android.support.v7.widget.LinearLayoutCompat>
+            app:bootstrapText="Name of the event" />
 
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/make_payment_ticketAmountTotal_label"
-            android:layout_width="wrap_content"
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/purchase_ticket_amount"/>
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/make_payment_ticketCount_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                app:bootstrapText="@string/purchase_ticket_count"/>
 
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/make_payment_ticketTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="50$"/>
-    </android.support.v7.widget.LinearLayoutCompat>
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/make_payment_ticketCount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h3_text_size"
+                app:bootstrapText="1"/>
+        </android.support.v7.widget.LinearLayoutCompat>
 
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/make_payment_cardNumber_label"
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/make_payment_ticketAmountTotal_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                app:bootstrapText="@string/purchase_ticket_amount"/>
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/make_payment_ticketTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h3_text_size"
+                app:bootstrapText="50$"/>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/make_payment_cardNumber_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                app:bootstrapText="@string/make_payment_cardNumber"/>
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/make_payment_cardNumber"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="info"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                android:text="1"
+                android:inputType="number"/>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/make_payment_securityCode_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                app:bootstrapText="@string/make_payment_securityCode"/>
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/make_payment_securityCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="info"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                android:text="1"
+                android:inputType="number" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/make_payment_expirationMonth_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                app:bootstrapText="@string/make_payment_expirationMonth"/>
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/make_payment_expirationMonth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="info"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                android:text="1"
+                android:inputType="number" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/make_payment_expirationYear_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                app:bootstrapText="@string/make_payment_expirationYear"/>
+            <com.beardedhen.androidbootstrap.BootstrapEditText
+                android:id="@+id/make_payment_expirationYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                app:bootstrapSize="md"
+                app:bootstrapBrand="info"
+                android:textSize="@dimen/bootstrap_h4_text_size"
+                android:text="1"
+                android:inputType="number" />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <com.beardedhen.androidbootstrap.BootstrapButton
+            android:id="@+id/make_payment_makePayment_button"
+            android:text="@string/make_payment_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/make_payment_cardNumber"/>
-        <com.beardedhen.androidbootstrap.BootstrapEditText
-            android:id="@+id/make_payment_cardNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
+            app:bootstrapBrand="success"
             app:bootstrapSize="md"
-            app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"
-            android:inputType="number"/>
-    </android.support.v7.widget.LinearLayoutCompat>
-
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/make_payment_securityCode_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/make_payment_securityCode"/>
-        <com.beardedhen.androidbootstrap.BootstrapEditText
-            android:id="@+id/make_payment_securityCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            app:bootstrapSize="md"
-            app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"
-            android:inputType="number" />
-    </android.support.v7.widget.LinearLayoutCompat>
-
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/make_payment_expirationMonth_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/make_payment_expirationMonth"/>
-        <com.beardedhen.androidbootstrap.BootstrapEditText
-            android:id="@+id/make_payment_expirationMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            app:bootstrapSize="md"
-            app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"
-            android:inputType="number" />
-    </android.support.v7.widget.LinearLayoutCompat>
-
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/make_payment_expirationYear_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/make_payment_expirationYear"/>
-        <com.beardedhen.androidbootstrap.BootstrapEditText
-            android:id="@+id/make_payment_expirationYear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            app:bootstrapSize="md"
-            app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"
-            android:inputType="number" />
-    </android.support.v7.widget.LinearLayoutCompat>
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-        android:id="@+id/make_payment_makePayment_button"
-        android:text="@string/make_payment_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:bootstrapBrand="success"
-        app:bootstrapSize="md"
-        app:buttonMode="regular"
-        app:showOutline="false"
-        app:roundedCorners="true"/>
+            app:buttonMode="regular"
+            app:showOutline="false"
+            app:roundedCorners="true"/>
+            -->
 </LinearLayout>

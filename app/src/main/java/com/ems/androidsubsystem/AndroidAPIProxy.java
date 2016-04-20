@@ -17,11 +17,14 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.ems.DataSubsystem.Event;
+import com.ems.DataSubsystem.Payment;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONStringer;
@@ -36,11 +39,14 @@ import org.json.JSONTokener;
 public class AndroidAPIProxy {
 
     private static final String LOG = "AndroidAPIProxy";
-
-    private static final String API_PURCHASE_TICKET = "http://puro.ignorelist.com:8080/ems_github/android_api/pay";
+//http://puro.ignorelist.com:8080/last/android_api/pay
+    //http://ec2-54-191-253-30.us-west-2.compute.amazonaws.com
+    private static final String API_PURCHASE_TICKET = "http://ec2-54-191-253-30.us-west-2.compute.amazonaws.com:8080/demo/android_api/";
 
     private onTicketPurchased ticketObserver;
-    
+    private onEventsRefreshed eventObserver;
+    private DateFormatter dateFormatter =new DateFormatter();
+
     interface onEventsRefreshed{
         void onEventsRefreshed(List<Event> events);
     }
@@ -55,7 +61,8 @@ public class AndroidAPIProxy {
 	 * @param event Event for which the ticket is being purchased.
 	 * @param count Number of tickets purchased.
 	 */
-	public void purchaseTicket(final onTicketPurchased observer, final Event event, final int count) {
+	public void purchaseTicket(final onTicketPurchased observer, final Event event,
+                               final int count, final Payment payment) {
         //this needs to be called from the UI thread to get the Handler object
 		ticketObserver = observer;
         final Handler handler = new Handler();
@@ -72,7 +79,7 @@ public class AndroidAPIProxy {
                 StringBuilder builder;
                 boolean successful =false;
                 try {
-                    String requestString =API_PURCHASE_TICKET+"/" + event.getId()+"/"+count;
+                    String requestString =API_PURCHASE_TICKET+"pay/" + event.getId()+"/"+count;
                     URL url = new URL(requestString);
 
                     con = (HttpURLConnection) url.openConnection();
@@ -89,14 +96,19 @@ public class AndroidAPIProxy {
                     output  = new JsonWriter(new PrintWriter(con.getOutputStream()));
                     //{"count":null,"price":0.0,"number":null,"eventName":null}
 
-                    output.beginObject().name("count").value(count);
+                    output.beginObject();
+                    output.name("ticket").beginObject();
+                    output.name("count").value(count);
                     output.name("price").value(event.getTicketPrice());
                     output.name("number").value(-1);
-                    output.name("eventName").value(event.getName()).endObject().flush();
-
-
-
-
+                    output.name("eventName").value(event.getName());
+                    output.name("email").value(payment.getEmail()).endObject();
+                    output.name("payment").beginObject();
+                    output.name("creditCardNumber").value(payment.getCreditCardNumber());
+                    output.name("date").value(new SimpleDateFormat("yyyy-MM-dd").format(payment.date));
+                    output.name("email").value(payment.getEmail());
+                    output.name("creditCardExpirationDate").value(payment.getCreditCardExpirationDate());
+                    output.name("amount").value(payment.getAmount()).endObject().endObject().flush();
 
                     Log.d(LOG, String.valueOf(con.getResponseCode()));
                     input = new BufferedInputStream(con.getInputStream());
@@ -154,9 +166,9 @@ public class AndroidAPIProxy {
 	 * @return List of active events in the system.
 	 */
 	public List<Event> getEvents() {
-        Log.d(LOG, "getEvents");
+        /*Log.d(LOG, "getEvents");
         //this is being called in an external
-		//todo getEvents() from the server (HTTPUrlConnection)
+		//todo important getEvents() from the server (HTTPUrlConnection)
         List<Event> events = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
             String category;
@@ -166,7 +178,91 @@ public class AndroidAPIProxy {
                 category = "Conference";
             events.add(new Event("Event "+ i, "Date "+ i, "Location "+ i, category+ i, 25));
         }
-		return events;
-	 } 
+		return events;*/
+
+        //getting the events from the server
+        Log.d(LOG, "get Events running");
+        boolean failed = false;
+        HttpURLConnection con = null;
+        InputStream input = null;
+        StringBuilder builder;
+        List<Event> events = null;
+        try {
+            String requestString =API_PURCHASE_TICKET+"events_list";
+            URL url = new URL(requestString);
+
+            con = (HttpURLConnection) url.openConnection();
+
+            con.setReadTimeout(5000);
+            con.setConnectTimeout(5000);
+            con.setRequestMethod("GET");
+            con.setRequestProperty("Accept", "application/json");
+            con.setDoInput(true);
+
+            input = new BufferedInputStream(con.getInputStream());
+            BufferedReader reader = new BufferedReader(new InputStreamReader(input));
+            String line;
+            builder = new StringBuilder();
+            Log.d(LOG, String.valueOf(con.getResponseCode()));
+            while ((line = reader.readLine()) != null) {
+                builder.append(line);
+            }
+            String jsonResponse = builder.toString();//this should be a simple string
+            Log.d(LOG, "Purchase Ticket runnable end: server said: "+ jsonResponse);
+            
+            events = parseEvents(jsonResponse);
+        }catch (JSONException e) {
+                    e.printStackTrace();
+                    failed =true;
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+            failed = true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            failed = true;
+            Log.d(LOG, "IOException, possibly no connection to server");
+        } finally {
+            if (input != null)
+                try {
+                    input.close();
+                } catch (Exception e) {//todo: catch exceptions appropriately
+                    e.printStackTrace();
+                }
+            if (con != null)
+                con.disconnect();
+        }
+        //return value might be null in case of an exception
+        return events;
+	 }
+
+    private List<Event> parseEvents(String jsonResponse) throws JSONException{
+        JSONTokener tokener = new JSONTokener(jsonResponse);
+        JSONArray eventsArray = (JSONArray) tokener.nextValue();
+        JSONObject jsonEvent;
+        List<Event> events= new ArrayList<>();
+
+        for(int i = 0; i<eventsArray.length();i++){
+            jsonEvent= eventsArray.getJSONObject(i);
+
+            Event event = new Event();
+            event.setCategory(jsonEvent.getString("category"));
+            event.setDescription(jsonEvent.getString("description"));
+            event.setEndDate(jsonEvent.getString("endDate"));
+            event.setId(jsonEvent.getInt("id"));
+            event.setImage(jsonEvent.getString("image"));
+            event.setLocation(jsonEvent.getString("location"));
+            event.setName(jsonEvent.getString("name"));
+
+            int proposalAllowed = jsonEvent.getInt("proposalAllowed");
+            event.setProposalsAllowed((proposalAllowed==0)?false:true);
+            event.setStartDate(jsonEvent.getString("startDate"));
+            event.setTicketPrice(jsonEvent.getDouble("ticketPrice"));
+            event.setTime(jsonEvent.getString("time"));
+
+            events.add(event);
+        }
+
+        return events;
+    }
 
 }

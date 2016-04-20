@@ -25,6 +25,7 @@ public class Ticket {
 	 * Name of the event for which this ticket was purchased.
 	 */
 	public String eventName;
+	public String email;
 	/**
 	 * Getter of count
 	 */

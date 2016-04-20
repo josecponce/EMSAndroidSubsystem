@@ -12,16 +12,22 @@ import com.beardedhen.androidbootstrap.BootstrapButton;
 import com.beardedhen.androidbootstrap.api.defaults.ButtonMode;
 import com.ems.DataSubsystem.Event;
 
+import java.text.ParseException;
+import java.util.Date;
+
 public class EventDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String LOG ="EventDetailsActivity";
 
     private AwesomeTextView mEventNameTextView;
     private AwesomeTextView mEventLocationTextView;
-    private AwesomeTextView mEventDateTextView;
+    private AwesomeTextView mEventStartDateTextView;
+    private AwesomeTextView mEventEndDateTextView;
     private AwesomeTextView mEventTimeTextView;
     private AwesomeTextView mEventDescriptionTextView;
     private BootstrapButton mPurchaseTicketButton;
+
+    private DateFormatter dateFormatter = new DateFormatter();
     private Event mEvent;
 
     @Override
@@ -30,7 +36,11 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_event_details);
 
         mEvent = (Event) getIntent().getSerializableExtra(EventsActivity.EXTRA_EVENT);
-        wireUIElements();
+        try {//this should never throw an exception, unless the server date format changes
+            wireUIElements();
+        }catch (ParseException e){
+            e.printStackTrace();
+        }
     }
 
     public void purchaseTicket() {
@@ -39,11 +49,12 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         startActivity(i);
     }
 
-    private void wireUIElements() {
+    private void wireUIElements() throws ParseException {
         //get handles to UI elements
         mEventNameTextView =(AwesomeTextView) findViewById(R.id.eventDetails_eventName);
         mEventLocationTextView= (AwesomeTextView) findViewById(R.id.eventDetails_eventLocation);
-        mEventDateTextView = (AwesomeTextView) findViewById(R.id.eventDetails_eventDate);
+        mEventStartDateTextView = (AwesomeTextView) findViewById(R.id.eventDetails_eventStartDate);
+        mEventEndDateTextView = (AwesomeTextView) findViewById(R.id.eventDetails_eventEndDate);
         mEventTimeTextView = (AwesomeTextView) findViewById(R.id.eventDetails_eventTime);
         mEventDescriptionTextView = (AwesomeTextView) findViewById(R.id.eventDetails_eventDescription);
         mPurchaseTicketButton = (BootstrapButton) findViewById(R.id.eventDetails_purchaseTicket_button);
@@ -51,8 +62,16 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         //configure UI elements
         mEventNameTextView.setText(mEvent.getName());
         mEventLocationTextView.setText(mEvent.getLocation());
-        mEventDateTextView.setText(mEvent.getStartDate());
-        mEventTimeTextView.setText("Some made up time");
+
+        final String startDate = mEvent.getStartDate();
+        mEventStartDateTextView.setText(dateFormatter.fromServerToLocal(startDate));
+
+        final String endDate = mEvent.getEndDate();
+        mEventEndDateTextView.setText(dateFormatter.fromServerToLocal(endDate));
+
+        final String time = mEvent.getTime();
+        mEventTimeTextView.setText(dateFormatter.formatTime(time));
+
         final String defaults = "There is no description";
         final String description = mEvent.getDescription();
         mEventDescriptionTextView.setText((description ==null)? defaults:description);

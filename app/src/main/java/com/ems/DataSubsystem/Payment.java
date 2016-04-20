@@ -1,5 +1,7 @@
 package com.ems.DataSubsystem;
 
+import java.util.Date;
+
 /**
  * Entity class used for the sole purpose of representing 
  * the state of a payment object. JPA will be used to persist 
@@ -16,7 +18,7 @@ public class Payment {
 	/**
 	 * Date and time when this transaction was recorded.
 	 */
-	public String date;
+	public Date date;
 	/**
 	 * Email address associated with this transaction.
 	 */
@@ -48,13 +50,13 @@ public class Payment {
 	/**
 	 * Getter of date
 	 */
-	public String getDate() {
+	public Date getDate() {
 	 	 return date; 
 	}
 	/**
 	 * Setter of date
 	 */
-	public void setDate(String date) { 
+	public void setDate(Date date) {
 		 this.date = date; 
 	}
 	/**

@@ -52,7 +52,7 @@ public class EventsSingleton{
             new Thread(new Runnable() {
                 @Override
                 public void run() {//eventsSingleton will receive a callback when the new events are here
-                    events = proxy.getEvents();
+                    events = proxy.getEvents();//this is a network(time consuming) operation
                     lastMod = new Date();
                     handler.post(new Runnable() {//this needs to be posted to the android UI thread
                         @Override
