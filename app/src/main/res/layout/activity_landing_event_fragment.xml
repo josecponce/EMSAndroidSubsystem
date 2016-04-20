@@ -1,110 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:gravity="center_horizontal">
-
-    <com.beardedhen.androidbootstrap.AwesomeTextView
-        android:id="@+id/landing_event_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:bootstrapBrand="regular"
-        android:textSize="@dimen/bootstrap_h3_text_size"
-        app:bootstrapText="Name of the event" />
-    <ImageView
-        android:id="@+id/landing_event_image"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@android:drawable/ic_media_play"/>
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/landing_event_location_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/landing_event_location"/>
-
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/landing_event_Location"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="Event address"/>
-    </android.support.v7.widget.LinearLayoutCompat>
+    android:layout_height="match_parent">
 
     <android.support.v7.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/landing_event_startDate_label"
-            android:layout_width="wrap_content"
+            android:id="@+id/landing_event_name"
+            app:bootstrapBrand="regular"
+            app:bootstrapText="Name of the event"
+            style="@style/EventName"/>
+
+        <ImageView
+            android:id="@+id/landing_event_image"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@android:drawable/ic_media_play"
+            android:layout_gravity="center_horizontal"/>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            style="@style/HorizontalLabelValuePair">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/landing_event_location_label"
+                app:bootstrapText="@string/landing_event_location"
+                app:bootstrapBrand="regular"
+                style="@style/HorizontalLabel" />
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/landing_event_Location"
+                app:bootstrapBrand="regular"
+                app:bootstrapText="Event address"
+                style="@style/HorizontalValue"
+                />
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            style="@style/HorizontalLabelValuePair">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/landing_event_startDate_label"
+                app:bootstrapBrand="regular"
+                app:bootstrapText="@string/landing_event_startDate"
+                style="@style/HorizontalLabel"/>
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/landing_event_startDate"
+                app:bootstrapBrand="regular"
+                app:bootstrapText="Date of event"
+                style="@style/HorizontalValue"/>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            style="@style/HorizontalLabelValuePair">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/landing_event_endDate_label"
+                app:bootstrapBrand="regular"
+                app:bootstrapText="@string/landing_event_endDate"
+                style="@style/HorizontalLabel"/>
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/landing_event_endDate"
+                app:bootstrapBrand="regular"
+                app:bootstrapText="Date of event"
+                style="@style/HorizontalValue"/>
+        </android.support.v7.widget.LinearLayoutCompat>
+
+        <android.support.v7.widget.LinearLayoutCompat
+            style="@style/HorizontalLabelValuePair">
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/landing_event_Time_label"
+                app:bootstrapText="@string/landing_event_time"
+                app:bootstrapBrand="regular"
+                style="@style/HorizontalLabel"/>
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/landing_event_Time"
+                app:bootstrapBrand="regular"
+                app:bootstrapText="Time of the event"
+                style="@style/HorizontalValue"/>
+        </android.support.v7.widget.LinearLayoutCompat>
+        <com.beardedhen.androidbootstrap.AwesomeTextView
+            android:id="@+id/landing_event_Description"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/landing_event_startDate"/>
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/landing_event_startDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="Date of event"/>
+            android:textSize="@dimen/bootstrap_h5_text_size"
+            app:bootstrapText="Full description of the event goes here" />
+
     </android.support.v7.widget.LinearLayoutCompat>
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/landing_event_endDate_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/landing_event_endDate"/>
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/landing_event_endDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="Date of event"/>
-    </android.support.v7.widget.LinearLayoutCompat>
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/landing_event_Time_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/landing_event_time"/>
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/landing_event_Time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="Time of the event"/>
-    </android.support.v7.widget.LinearLayoutCompat>
-    <com.beardedhen.androidbootstrap.AwesomeTextView
-        android:id="@+id/landing_event_Description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:bootstrapBrand="regular"
-        android:textSize="@dimen/bootstrap_h5_text_size"
-        app:bootstrapText="Full description of the event goes here"/>
-</LinearLayout>
+
+</ScrollView>

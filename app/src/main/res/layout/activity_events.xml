@@ -9,76 +9,73 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.ems.androidsubsystem.EventsActivity">
+
 <android.support.v7.widget.LinearLayoutCompat
     android:id="@+id/events_from_date_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/HorizontalLabelValuePair"
     android:layout_alignParentTop="true"
     android:layout_alignParentLeft="true">
+
     <com.beardedhen.androidbootstrap.BootstrapLabel
         android:id="@+id/events_from_date_label"
         android:text="@string/from_date_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:bootstrapBrand="info"
         app:bootstrapSize="md"
-        android:layout_weight="0"/>
+        style="@style/HorizontalLabel"/>
+
     <com.beardedhen.androidbootstrap.BootstrapEditText
         android:id="@+id/events_from_date_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:bootstrapBrand="primary"
         app:bootstrapSize="md"
-        android:layout_weight="1"/>
+        style="@style/HorizontalValue"/>
+
 </android.support.v7.widget.LinearLayoutCompat>
+
 <android.support.v7.widget.LinearLayoutCompat
     android:id="@+id/events_to_date_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
-    android:layout_below="@id/events_from_date_layout">
+    android:layout_below="@id/events_from_date_layout"
+    style="@style/HorizontalLabelValuePair">
+
     <com.beardedhen.androidbootstrap.BootstrapLabel
         android:id="@+id/events_to_date_label"
         android:text="@string/to_date_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:bootstrapBrand="info"
         app:bootstrapSize="md"
-        android:layout_weight="0"/>
+        style="@style/HorizontalLabel"/>
+
     <com.beardedhen.androidbootstrap.BootstrapEditText
         android:id="@+id/events_to_date_editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:bootstrapBrand="primary"
         app:bootstrapSize="md"
-        android:layout_weight="1"/>
+        style="@style/HorizontalValue"/>
+
 </android.support.v7.widget.LinearLayoutCompat>
+
 <android.support.v7.widget.LinearLayoutCompat
     android:id="@+id/events_category_layout"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:layout_alignParentLeft="true"
-    android:layout_below="@id/events_to_date_layout">
+    android:layout_below="@id/events_to_date_layout"
+    style="@style/HorizontalLabelValuePair">
+
     <com.beardedhen.androidbootstrap.BootstrapLabel
         android:id="@+id/events_category_label"
         android:text="@string/category_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         app:bootstrapBrand="info"
         app:bootstrapSize="md"
-        android:layout_weight="0"/>
+        style="@style/HorizontalLabel"/>
+
     <com.beardedhen.androidbootstrap.BootstrapDropDown
         android:id="@+id/events_category_dropDown"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
         app:bootstrapBrand="primary"
         app:roundedCorners="true"
-        app:bootstrapSize="xs"
+        app:bootstrapSize="lg"
         app:bootstrapExpandDirection="down"
         app:dropdownResource="@array/dropdown"
-        android:layout_weight="1"/>
+        style="@style/HorizontalValue"/>
+
 </android.support.v7.widget.LinearLayoutCompat>
+
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/events_filter_button"
         android:text="@string/filter_button"
@@ -86,11 +83,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/events_category_layout"
         android:layout_alignParentLeft="true"
-        app:bootstrapBrand="success"
+        app:bootstrapBrand="primary"
         app:bootstrapSize="md"
         app:buttonMode="regular"
         app:showOutline="false"
-        app:roundedCorners="true"/>
+        app:roundedCorners="true"
+        style="@style/MarginAndPadding"/>
+
     <android.support.v7.widget.ListViewCompat
         android:id="@+id/events_listView"
         android:layout_width="match_parent"
@@ -98,5 +97,6 @@
         android:layout_below="@id/events_filter_button"
         android:layout_alignParentLeft="true"
         android:divider="#ffffff"
-        android:dividerHeight="2dp"/>
+        android:dividerHeight="2dp"
+        style="@style/MarginAndPadding"/>
 </RelativeLayout>

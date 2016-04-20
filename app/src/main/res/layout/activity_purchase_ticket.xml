@@ -13,203 +13,163 @@
     android:gravity="center_horizontal">
 
     <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/purchase_ticket_eventName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="Name of the event" />
+        android:id="@+id/purchase_ticket_eventName"
+        app:bootstrapBrand="regular"
+        app:bootstrapText="Name of the event"
+        style="@style/EventName"/>
+
     <ImageView
         android:id="@+id/purchase_ticket_eventImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@android:drawable/ic_media_play"/>
-
+        android:src="@android:drawable/ic_media_play"
+        style="@style/MarginAndPadding"/>
 
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        style="@style/HorizontalLabelValuePair">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/purchase_ticket_rate_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/purchase_ticket_rate"/>
+            app:bootstrapText="@string/purchase_ticket_rate"
+            style="@style/HorizontalLabel"/>
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/purchase_ticket_ticketRate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="50$"/>
+            app:bootstrapText="50$"
+            style="@style/HorizontalValue"/>
+
     </android.support.v7.widget.LinearLayoutCompat>
+
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        style="@style/HorizontalLabelValuePair">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/purchase_ticket_count_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/purchase_ticket_count"/>
+            app:bootstrapText="@string/purchase_ticket_count"
+            style="@style/HorizontalLabel"/>
+
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/purchase_ticket_ticketCount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:maxLines="1"
             app:bootstrapSize="md"
             app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"/>
+            android:text="1"
+            style="@style/HorizontalValue"/>
+
     </android.support.v7.widget.LinearLayoutCompat>
+
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        style="@style/HorizontalLabelValuePair">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/purchase_ticket_totalAmount_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/purchase_ticket_amount"/>
+            app:bootstrapText="@string/purchase_ticket_amount"
+            style="@style/HorizontalLabel"/>
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/purchase_ticket_ticketAmountTotal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="50$"/>
+            app:bootstrapText="50$"
+            style="@style/HorizontalValue"/>
     </android.support.v7.widget.LinearLayoutCompat>
 
-
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        style="@style/HorizontalLabelValuePair">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/purchase_ticket_email_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/purchase_ticket_email"/>
+            app:bootstrapText="@string/purchase_ticket_email"
+            style="@style/HorizontalLabel"/>
+
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/purchase_ticket_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:maxLines="1"
             app:bootstrapSize="md"
             app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text=""
-            android:inputType="textEmailAddress"/>
+            android:inputType="textEmailAddress"
+            style="@style/HorizontalValue"/>
+
     </android.support.v7.widget.LinearLayoutCompat>
 
-
-
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        style="@style/HorizontalLabelValuePair">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/make_payment_cardNumber_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/make_payment_cardNumber"/>
+            app:bootstrapText="@string/make_payment_cardNumber"
+            style="@style/HorizontalLabel"/>
+
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/make_payment_cardNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:maxLines="1"
             app:bootstrapSize="md"
             app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"
-            android:inputType="number"/>
+            android:inputType="number"
+            style="@style/HorizontalValue"/>
+
     </android.support.v7.widget.LinearLayoutCompat>
 
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        style="@style/HorizontalLabelValuePair">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/make_payment_securityCode_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/make_payment_securityCode"/>
+            app:bootstrapText="@string/make_payment_securityCode"
+            style="@style/HorizontalLabel"/>
+
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/make_payment_securityCode"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:maxLines="1"
             app:bootstrapSize="md"
             app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"
-            android:inputType="number" />
+            android:inputType="number"
+            style="@style/HorizontalValue"/>
+
     </android.support.v7.widget.LinearLayoutCompat>
 
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        style="@style/HorizontalLabelValuePair">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/make_payment_expirationMonth_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/make_payment_expirationMonth"/>
+            app:bootstrapText="@string/make_payment_expirationMonth"
+            style="@style/HorizontalLabel"/>
+
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/make_payment_expirationMonth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:maxLines="1"
             app:bootstrapSize="md"
             app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"
-            android:inputType="number" />
+            android:inputType="number"
+            style="@style/HorizontalValue"/>
+
     </android.support.v7.widget.LinearLayoutCompat>
 
     <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
+        style="@style/HorizontalLabelValuePair">
+
         <com.beardedhen.androidbootstrap.AwesomeTextView
             android:id="@+id/make_payment_expirationYear_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/make_payment_expirationYear"/>
+            app:bootstrapText="@string/make_payment_expirationYear"
+            style="@style/HorizontalLabel"/>
+
         <com.beardedhen.androidbootstrap.BootstrapEditText
             android:id="@+id/make_payment_expirationYear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:maxLines="1"
             app:bootstrapSize="md"
             app:bootstrapBrand="info"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            android:text="1"
-            android:inputType="number" />
+            android:inputType="number"
+            style="@style/HorizontalValue"/>
+
     </android.support.v7.widget.LinearLayoutCompat>
 
     <com.beardedhen.androidbootstrap.BootstrapButton
@@ -218,8 +178,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:bootstrapBrand="success"
-        app:bootstrapSize="md"
+        app:bootstrapSize="lg"
         app:buttonMode="regular"
         app:showOutline="false"
-        app:roundedCorners="true"/>
+        app:roundedCorners="true"
+        style="@style/MarginAndPadding"/>
+
 </LinearLayout>

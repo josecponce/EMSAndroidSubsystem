@@ -12,115 +12,122 @@
     android:orientation="vertical"
     android:gravity="center_horizontal">
 
-    <com.beardedhen.androidbootstrap.AwesomeTextView
-        android:id="@+id/eventDetails_eventName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:bootstrapBrand="regular"
-        android:textSize="@dimen/bootstrap_h3_text_size"
-        app:bootstrapText="Name of the event" />
-    <ImageView
-        android:id="@+id/eventDetails_eventImage"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@android:drawable/ic_media_play"/>
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/eventDetails_location_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/purchase_ticket_location"/>
 
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/eventDetails_eventLocation"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="Event address"/>
-    </android.support.v7.widget.LinearLayoutCompat>
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/eventDetails_startDate_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/eventDetails_startDate"/>
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/eventDetails_eventStartDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="Date of event"/>
-    </android.support.v7.widget.LinearLayoutCompat>
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/eventDetails_endDate_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/eventDetails_endDate"/>
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/eventDetails_eventEndDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h3_text_size"
-            app:bootstrapText="Date of event"/>
-    </android.support.v7.widget.LinearLayoutCompat>
-    <android.support.v7.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_horizontal">
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/eventDetails_Time_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="@string/purchase_ticket_time"/>
-        <com.beardedhen.androidbootstrap.AwesomeTextView
-            android:id="@+id/eventDetails_eventTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:bootstrapBrand="regular"
-            android:textSize="@dimen/bootstrap_h4_text_size"
-            app:bootstrapText="Time of the event"/>
-    </android.support.v7.widget.LinearLayoutCompat>
-    <com.beardedhen.androidbootstrap.AwesomeTextView
-        android:id="@+id/eventDetails_eventDescription"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:bootstrapBrand="regular"
-        android:textSize="@dimen/bootstrap_h5_text_size"
-        app:bootstrapText="Full description of the event goes here"/>
+        <android.support.v7.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/eventDetails_eventName"
+                app:bootstrapBrand="regular"
+                app:bootstrapText="Name of the event"
+                style="@style/EventName"/>
+
+            <ImageView
+                android:id="@+id/eventDetails_eventImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@android:drawable/ic_media_play"
+                android:layout_gravity="center_horizontal"
+                style="@style/MarginAndPadding"/>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                style="@style/HorizontalLabelValuePair">
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/eventDetails_location_label"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapText="@string/purchase_ticket_location"
+                    style="@style/HorizontalLabel"/>
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/eventDetails_eventLocation"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapText="Event address"
+                    style="@style/HorizontalValue"/>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                style="@style/HorizontalLabelValuePair">
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/eventDetails_startDate_label"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapText="@string/eventDetails_startDate"
+                    style="@style/HorizontalLabel"/>
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/eventDetails_eventStartDate"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapText="Date of event"
+                    style="@style/HorizontalValue"/>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                style="@style/HorizontalLabelValuePair">
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/eventDetails_endDate_label"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapText="@string/eventDetails_endDate"
+                    style="@style/HorizontalLabel"/>
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/eventDetails_eventEndDate"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapText="Date of event"
+                    style="@style/HorizontalValue"/>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <android.support.v7.widget.LinearLayoutCompat
+                style="@style/HorizontalLabelValuePair">
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/eventDetails_Time_label"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapText="@string/purchase_ticket_time"
+                    style="@style/HorizontalLabel"/>
+
+                <com.beardedhen.androidbootstrap.AwesomeTextView
+                    android:id="@+id/eventDetails_eventTime"
+                    app:bootstrapBrand="regular"
+                    app:bootstrapText="Time of the event"
+                    style="@style/HorizontalValue"/>
+
+            </android.support.v7.widget.LinearLayoutCompat>
+
+            <com.beardedhen.androidbootstrap.AwesomeTextView
+                android:id="@+id/eventDetails_eventDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bootstrapBrand="regular"
+                android:textSize="@dimen/bootstrap_h5_text_size"
+                app:bootstrapText="Full description of the event goes here"
+                style="@style/MarginAndPadding"/>
+
+        </android.support.v7.widget.LinearLayoutCompat>
+
+    </android.support.v4.widget.NestedScrollView>
+
     <com.beardedhen.androidbootstrap.BootstrapButton
         android:id="@+id/eventDetails_purchaseTicket_button"
         android:text="@string/purchase_ticket_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_weight="0"
         app:bootstrapBrand="success"
-        app:bootstrapSize="md"
+        app:bootstrapSize="lg"
         app:buttonMode="regular"
         app:showOutline="false"
-        app:roundedCorners="true"/>
+        app:roundedCorners="true"
+        style="@style/MarginAndPadding"/>
 </LinearLayout>
