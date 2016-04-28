@@ -22,7 +22,23 @@ public class EventsAdapter extends BaseAdapter implements AndroidAPIProxy.onEven
 
     private static final String LOG ="EventsAdatper";
 
-	/**
+    public EventsSingleton getEventsSingleton() {
+        return eventsSingleton;
+    }
+
+    public void setEventsSingleton(EventsSingleton eventsSingleton) {
+        this.eventsSingleton = eventsSingleton;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
+
+    /**
 	 * List of events that are being displayed to the user.
 	 */
 	//private List<Event> events;//do i eliminate this and leave in the event singleton only??

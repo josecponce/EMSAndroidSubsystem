@@ -43,8 +43,10 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
         }
     }
 
-    public void purchaseTicket() {
+    public void purchaseTicket(Intent testIntent) {
         Intent i = new Intent(this, PurchaseTicketActivity.class);
+        if (testIntent!=null)
+            i = testIntent;
         i.putExtra(EventsActivity.EXTRA_EVENT, mEvent);
         startActivity(i);
     }
@@ -83,7 +85,7 @@ public class EventDetailsActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View v) {
         if (v.getId()==R.id.eventDetails_purchaseTicket_button){//if purchase button clicked
             Log.d(LOG, "clicked purchase ticket");
-            purchaseTicket();
+            purchaseTicket(null);
         }
     }
 }

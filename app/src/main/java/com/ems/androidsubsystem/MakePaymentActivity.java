@@ -28,6 +28,98 @@ public class MakePaymentActivity extends AppCompatActivity implements AndroidAPI
     private BootstrapEditText mExpirationYearEditText;
     private BootstrapButton mPayNowButton;
 
+    public static String getLOG() {
+        return LOG;
+    }
+
+    public AwesomeTextView getmEventNameTextView() {
+        return mEventNameTextView;
+    }
+
+    public void setmEventNameTextView(AwesomeTextView mEventNameTextView) {
+        this.mEventNameTextView = mEventNameTextView;
+    }
+
+    public AwesomeTextView getmTicketCountTextView() {
+        return mTicketCountTextView;
+    }
+
+    public void setmTicketCountTextView(AwesomeTextView mTicketCountTextView) {
+        this.mTicketCountTextView = mTicketCountTextView;
+    }
+
+    public AwesomeTextView getmTicketAmountTotalTextView() {
+        return mTicketAmountTotalTextView;
+    }
+
+    public void setmTicketAmountTotalTextView(AwesomeTextView mTicketAmountTotalTextView) {
+        this.mTicketAmountTotalTextView = mTicketAmountTotalTextView;
+    }
+
+    public BootstrapEditText getmCardNumberEditText() {
+        return mCardNumberEditText;
+    }
+
+    public void setmCardNumberEditText(BootstrapEditText mCardNumberEditText) {
+        this.mCardNumberEditText = mCardNumberEditText;
+    }
+
+    public BootstrapEditText getmSecurityCodeEditText() {
+        return mSecurityCodeEditText;
+    }
+
+    public void setmSecurityCodeEditText(BootstrapEditText mSecurityCodeEditText) {
+        this.mSecurityCodeEditText = mSecurityCodeEditText;
+    }
+
+    public BootstrapEditText getmExpirationMonthEditText() {
+        return mExpirationMonthEditText;
+    }
+
+    public void setmExpirationMonthEditText(BootstrapEditText mExpirationMonthEditText) {
+        this.mExpirationMonthEditText = mExpirationMonthEditText;
+    }
+
+    public BootstrapEditText getmExpirationYearEditText() {
+        return mExpirationYearEditText;
+    }
+
+    public void setmExpirationYearEditText(BootstrapEditText mExpirationYearEditText) {
+        this.mExpirationYearEditText = mExpirationYearEditText;
+    }
+
+    public BootstrapButton getmPayNowButton() {
+        return mPayNowButton;
+    }
+
+    public void setmPayNowButton(BootstrapButton mPayNowButton) {
+        this.mPayNowButton = mPayNowButton;
+    }
+
+    public Event getmEvent() {
+        return mEvent;
+    }
+
+    public void setmEvent(Event mEvent) {
+        this.mEvent = mEvent;
+    }
+
+    public int getmTicketCount() {
+        return mTicketCount;
+    }
+
+    public void setmTicketCount(int mTicketCount) {
+        this.mTicketCount = mTicketCount;
+    }
+
+    public AndroidAPIProxy getProxy() {
+        return proxy;
+    }
+
+    public void setProxy(AndroidAPIProxy proxy) {
+        this.proxy = proxy;
+    }
+
     private Event mEvent;
     private int mTicketCount;
     private AndroidAPIProxy proxy = new AndroidAPIProxy();

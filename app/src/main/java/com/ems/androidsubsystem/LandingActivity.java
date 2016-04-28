@@ -19,6 +19,32 @@ import java.util.List;
 public class LandingActivity extends AppCompatActivity{
 
     FragmentPagerAdapter adapterViewPager;
+    BootstrapButton eventsListButton;
+    ViewPager vpPager;
+
+    public FragmentPagerAdapter getAdapterViewPager() {
+        return adapterViewPager;
+    }
+
+    public void setAdapterViewPager(FragmentPagerAdapter adapterViewPager) {
+        this.adapterViewPager = adapterViewPager;
+    }
+
+    public BootstrapButton getEventsListButton() {
+        return eventsListButton;
+    }
+
+    public void setEventsListButton(BootstrapButton eventsListButton) {
+        this.eventsListButton = eventsListButton;
+    }
+
+    public ViewPager getVpPager() {
+        return vpPager;
+    }
+
+    public void setVpPager(ViewPager vpPager) {
+        this.vpPager = vpPager;
+    }
 
     public static class MyPagerAdapter extends FragmentPagerAdapter implements AndroidAPIProxy.onEventsRefreshed{
         EventsSingleton eventsSingleton;
@@ -64,11 +90,11 @@ public class LandingActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_landing);
-        ViewPager vpPager = (ViewPager) findViewById(R.id.landing_event_fragment_container);
+        vpPager = (ViewPager) findViewById(R.id.landing_event_fragment_container);
         adapterViewPager = new MyPagerAdapter(getSupportFragmentManager());
         vpPager.setAdapter(adapterViewPager);
 
-        BootstrapButton eventsListButton = (BootstrapButton) findViewById(R.id.landing_goToEvents_button);
+        eventsListButton = (BootstrapButton) findViewById(R.id.landing_goToEvents_button);
         eventsListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

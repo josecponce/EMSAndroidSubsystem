@@ -10,7 +10,7 @@ import java.util.Date;
 public class DateFormatter {
     private SimpleDateFormat serverFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private SimpleDateFormat localFormat = new SimpleDateFormat("MM-dd-yyyy");
-    private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
+    private SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss aa");
 
     public String toLocalFormat(Date date){
         return localFormat.format(date);
@@ -34,7 +34,6 @@ public class DateFormatter {
     }
 
     public String formatTime(String time) throws ParseException {
-        Date timeD = serverFormat.parse(time);
-        return timeFormat.format(timeD);
+        return time;
     }
 }

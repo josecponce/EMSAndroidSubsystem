@@ -30,6 +30,8 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
     private BootstrapDropDown mCategoryDropDown;
     private BootstrapButton mFilterButton;
     private ListViewCompat mEventsList;
+    private EventsAdapter adapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +50,8 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
 
         mCategoryDropDown.setOnDropDownItemClickListener(this);
         mFilterButton.setOnClickListener(this);
-        mEventsList.setAdapter(new EventsAdapter(this, new Handler()));
+        adapter = new EventsAdapter(this, new Handler());
+        mEventsList.setAdapter(adapter);
         mEventsList.setOnItemClickListener(this);
         mEventsList.setClickable(true);
     }
@@ -63,6 +66,62 @@ public class EventsActivity extends AppCompatActivity implements View.OnClickLis
         if (v.getId()==R.id.events_filter_button){//the filter button has been clicked
             //todo filter the list of events by using the singleton data
         }
+    }
+
+    public static String getLOG() {
+        return LOG;
+    }
+
+    public static String getExtraEvent() {
+        return EXTRA_EVENT;
+    }
+
+    public BootstrapEditText getmFromDateEditText() {
+        return mFromDateEditText;
+    }
+
+    public void setmFromDateEditText(BootstrapEditText mFromDateEditText) {
+        this.mFromDateEditText = mFromDateEditText;
+    }
+
+    public BootstrapEditText getmToDateEditText() {
+        return mToDateEditText;
+    }
+
+    public void setmToDateEditText(BootstrapEditText mToDateEditText) {
+        this.mToDateEditText = mToDateEditText;
+    }
+
+    public BootstrapDropDown getmCategoryDropDown() {
+        return mCategoryDropDown;
+    }
+
+    public void setmCategoryDropDown(BootstrapDropDown mCategoryDropDown) {
+        this.mCategoryDropDown = mCategoryDropDown;
+    }
+
+    public BootstrapButton getmFilterButton() {
+        return mFilterButton;
+    }
+
+    public void setmFilterButton(BootstrapButton mFilterButton) {
+        this.mFilterButton = mFilterButton;
+    }
+
+    public ListViewCompat getmEventsList() {
+        return mEventsList;
+    }
+
+    public void setmEventsList(ListViewCompat mEventsList) {
+        this.mEventsList = mEventsList;
+    }
+
+    public EventsAdapter getAdapter() {
+        return adapter;
+    }
+
+    public void setAdapter(EventsAdapter adapter) {
+        this.adapter = adapter;
     }
 
     @Override

@@ -19,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.ems.DataSubsystem.Event;
@@ -247,7 +248,12 @@ public class AndroidAPIProxy {
             Event event = new Event();
             event.setCategory(jsonEvent.getString("category"));
             event.setDescription(jsonEvent.getString("description"));
-            event.setEndDate(jsonEvent.getString("endDate"));
+
+            String endDate = jsonEvent.getString("endDate");
+            final Date endDate2 = new Date(Long.parseLong(endDate));
+            endDate = dateFormatter.toServerFormat(endDate2);
+            event.setEndDate(endDate);
+
             event.setId(jsonEvent.getInt("id"));
             event.setImage(jsonEvent.getString("image"));
             event.setLocation(jsonEvent.getString("location"));
@@ -255,7 +261,12 @@ public class AndroidAPIProxy {
 
             int proposalAllowed = jsonEvent.getInt("proposalAllowed");
             event.setProposalsAllowed((proposalAllowed==0)?false:true);
-            event.setStartDate(jsonEvent.getString("startDate"));
+
+
+            String startDate = jsonEvent.getString("startDate");
+            Date startDate2 =  new Date(Long.parseLong(startDate));
+            startDate = dateFormatter.toServerFormat(startDate2);
+            event.setStartDate(startDate);
             event.setTicketPrice(jsonEvent.getDouble("ticketPrice"));
             event.setTime(jsonEvent.getString("time"));
 
